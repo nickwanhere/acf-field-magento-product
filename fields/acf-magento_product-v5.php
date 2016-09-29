@@ -153,14 +153,19 @@ class acf_field_magento_product extends acf_field {
 		/*
 		*  Create a simple text input using the 'font_size' setting.
 		*/
-	//esc_attr($field['value'])
-		
+	
+
+		if(!$field['multiple']):
+			$values = array($field['value']);
+		else:
+			$values = json_decode($field['value']);
+		endif;
 		?>
-		<select <?php echo $multiple?> name="<?php echo esc_attr($field['name']) ?>">
+		<select <?php echo $multiple?> name="<?php echo esc_attr($field['name']) ?><?php echo $multiple? '[]':''?>">
 				<?php foreach ($products as $product) {
 
 					?>
-					<option value="<?php echo $product->getEntityId()?>"><?php echo $product->getName() ?> (ID: <?php echo $product->getEntityId()?>)</option>
+					<option value="<?php echo $product->getEntityId()?>" <?php echo in_array($product->getEntityId(),$values)? 'selected="selected"':''; ?>><?php echo $product->getName() ?> (ID: <?php echo $product->getEntityId()?>)</option>
 
 					<?php
 
@@ -373,15 +378,14 @@ class acf_field_magento_product extends acf_field {
 	*  @return	$value
 	*/
 	
-	/*
+	
 	
 	function update_value( $value, $post_id, $field ) {
-		
-		return $value;
+		return json_encode($value);
 		
 	}
 	
-	*/
+	
 	
 	
 	/*
@@ -400,7 +404,7 @@ class acf_field_magento_product extends acf_field {
 	*  @return	$value (mixed) the modified value
 	*/
 		
-	/*
+	
 	
 	function format_value( $value, $post_id, $field ) {
 		
@@ -410,22 +414,14 @@ class acf_field_magento_product extends acf_field {
 			return $value;
 			
 		}
-		
-		
-		// apply setting
-		if( $field['font_size'] > 12 ) { 
-			
-			// format the value
-			// $value = 'something';
-		
-		}
-		
-		
-		// return
-		return $value;
+
+		if(!$field['multiple'])
+			return $value;
+
+		return json_decode($value);
 	}
 	
-	*/
+	
 	
 	
 	/*
