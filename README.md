@@ -1,6 +1,6 @@
-# ACF Magento Product Select Field
+# Mage Product Select for ACF
 
-Base on ACF Field Type Template
+Base on ACF Field Type Template. If you want to select MAGE products in your ACF field only, return you the Ids.
 
 ##Setup
 

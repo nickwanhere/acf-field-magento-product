@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: Advanced Custom Fields: Magento Product
+Plugin Name: Mage Product Select for ACF
 Plugin URI: http://nickwan.co
-Description: Select Magento Product within ACF Field
+Description: Base on ACF Field Type Template. If you want to select MAGE products in your ACF field only, return you the Ids.
 Version: 1.0.0
 Author: Nick wan
 Author URI: http://nickwan.co
